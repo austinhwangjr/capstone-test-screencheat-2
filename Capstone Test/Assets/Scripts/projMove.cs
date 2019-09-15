@@ -6,7 +6,7 @@ public class projMove : MonoBehaviour
 {
     private Rigidbody2D rb2d_proj;
     public GameObject bulletPrefab;
-
+    private int damage = 1;
     private float speed = 10.0f;
     public float lifetime = 2.0f;
 
@@ -25,6 +25,11 @@ public class projMove : MonoBehaviour
     void OnTriggerEnter2D(Collider2D hitInfo)
     {
         Debug.Log(hitInfo + "Hello");
+        playerHealth health = hitInfo.GetComponent<playerHealth>();
+        if(health != null)
+        {
+            health.TakeDamage(damage);
+        }
         Destroy(gameObject);
     }
 }
