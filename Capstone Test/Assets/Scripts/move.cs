@@ -15,8 +15,6 @@ public class move : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
-
         if (name == "Player 1")
         {
             float xAxis = Input.GetAxisRaw("Horizontal");

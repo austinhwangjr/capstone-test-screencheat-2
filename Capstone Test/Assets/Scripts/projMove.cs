@@ -22,14 +22,23 @@ public class projMove : MonoBehaviour
         rb2d_proj.velocity = transform.up * speed;
         Destroy(gameObject, lifetime);
     }
+
     void OnTriggerEnter2D(Collider2D hitInfo)
     {
         Debug.Log(hitInfo + "Hello");
         playerHealth health = hitInfo.GetComponent<playerHealth>();
+        Wall wall = hitInfo.GetComponent<Wall>();
+
         if(health != null)
         {
             health.TakeDamage(damage);
         }
+
+        if (wall != null)
+        {
+            Destroy(gameObject);
+        }
+
         Destroy(gameObject);
     }
 }
