@@ -15,17 +15,54 @@ public class move : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float xAxis = Input.GetAxisRaw("Horizontal");
-        float yAxis = Input.GetAxisRaw("Vertical");
+       
 
         if (name == "Player 1")
         {
+            float xAxis = Input.GetAxisRaw("Horizontal");
+            float yAxis = Input.GetAxisRaw("Vertical");
             //rb2d_player.velocity = new Vector3(0, yAxis, 0);
+            Quaternion rot = transform.rotation;
+
+            float z = rot.eulerAngles.z;
+
+            z += Input.GetAxisRaw("Horizontal") * -180f * Time.deltaTime;
+
+            rot = Quaternion.Euler(0, 0, z);
+
+            transform.rotation = rot;
+
+            // move
+            Vector3 pos = transform.position;
+
+            Vector3 velocity = new Vector3(0, yAxis * Time.deltaTime, 0);
+
+            pos += rot * velocity;
+            transform.position = pos;
         }
         
         if (name == "Player 2")
         {
+            float xAxis = Input.GetAxisRaw("Horizontal_2");
+            float yAxis = Input.GetAxisRaw("Vertical_2");
             //rb2d_player.velocity = new Vector2(Input.GetAxisRaw("Horizontal_2"), Input.GetAxisRaw("Vertical_2"));
+            Quaternion rot = transform.rotation;
+
+            float z = rot.eulerAngles.z;
+
+            z += Input.GetAxisRaw("Horizontal_2") * -180f * Time.deltaTime;
+
+            rot = Quaternion.Euler(0, 0, z);
+
+            transform.rotation = rot;
+
+            // move
+            Vector3 pos = transform.position;
+
+            Vector3 velocity = new Vector3(0, yAxis * Time.deltaTime, 0);
+
+            pos += rot * velocity;
+            transform.position = pos;
         }
 
         
@@ -33,23 +70,7 @@ public class move : MonoBehaviour
         //Rotate();
         //Forward(yAxis);
 
-        Quaternion rot = transform.rotation;
-
-        float z = rot.eulerAngles.z;
-
-        z += Input.GetAxisRaw("Horizontal") * -180f * Time.deltaTime;
-
-        rot = Quaternion.Euler(0, 0, z);
-
-        transform.rotation = rot;
-
-        // move
-        Vector3 pos = transform.position;
-
-        Vector3 velocity = new Vector3(0, yAxis * Time.deltaTime, 0);
-
-        pos += rot * velocity;
-        transform.position = pos;
+        
     }
 
     /*void Rotate()
