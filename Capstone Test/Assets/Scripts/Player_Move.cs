@@ -10,7 +10,7 @@ public class Player_Move : MonoBehaviour
 
     // movement variables
     public float rotation_speed_    = 360.0f;
-    public float speed_             = 0.0f;
+    private float speed_             = 0.0f;
     public float acceleration_      = 2.0f;
     public float decceleration_     = -2.0f;
     public float max_speed_         = 5.0f;  // i.e. max forward speed
@@ -33,13 +33,13 @@ public class Player_Move : MonoBehaviour
         rotation_ = transform.rotation;
         if (name == "Player 1")
         {
-            horizontal_input_ = "Horizontal";
-            vertical_input_ = "Vertical";
+            horizontal_input_ = "Horizontal_2";
+            vertical_input_ = "Vertical_2";
         }
         else if (name == "Player 2")
         {
-            horizontal_input_ = "Horizontal_2";
-            vertical_input_ = "Vertical_2";
+            horizontal_input_ = "Horizontal";
+            vertical_input_ = "Vertical";
         }
     }
 
