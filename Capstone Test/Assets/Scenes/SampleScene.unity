@@ -1175,7 +1175,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e745a99a05483034c90ba9d5d99731a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb2d_player: {fileID: 1080500635}
+  rb2d_player_: {fileID: 0}
+  rotation_speed_: 360
+  speed_: 0
+  acceleration_: 2
+  decceleration_: -2
+  max_speed_: 1
 --- !u!212 &1080500637
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2107,7 +2112,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e745a99a05483034c90ba9d5d99731a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb2d_player: {fileID: 1958749178}
+  rb2d_player_: {fileID: 0}
+  rotation_speed_: 360
+  speed_: 5
+  acceleration_: 2
+  decceleration_: -2
+  max_speed_: 5
 --- !u!212 &1958749180
 SpriteRenderer:
   m_ObjectHideFlags: 0
