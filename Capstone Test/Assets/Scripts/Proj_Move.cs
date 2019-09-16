@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class projMove : MonoBehaviour
+public class Proj_Move : MonoBehaviour
 {
     private Rigidbody2D rb2d_proj;
     public GameObject bulletPrefab;
@@ -25,8 +25,8 @@ public class projMove : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D hitInfo)
     {
-        Debug.Log(hitInfo + "Hello");
-        playerHealth health = hitInfo.GetComponent<playerHealth>();
+        // Debug.Log(hitInfo + "Hello");
+        Player_Health health = hitInfo.GetComponent<Player_Health>();
         Wall wall = hitInfo.GetComponent<Wall>();
 
         if(health != null)

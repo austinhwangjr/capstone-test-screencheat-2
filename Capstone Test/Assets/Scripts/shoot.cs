@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class shoot : MonoBehaviour
+public class Shoot : MonoBehaviour
 {
     public GameObject bulletPrefab;
     public Transform firepoint;
@@ -13,27 +13,21 @@ public class shoot : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-        if (Input.GetKeyDown(fire))//(Input.GetButtonDown("Fire1"))
+        if (Input.GetKeyDown(fire))
         {
-            Shoot();
-            Debug.Log("I shoot");
+            Fire();
         }
-        Debug.Log("No shoot");
-        Destroy(bulletPrefab, lifetime);
+        //Destroy(gameObject, lifetime);
     }
 
-    void Shoot()
+    void Fire()
     {
-        Debug.Log(firepoint.transform.position.ToString() + "keyword");
         Instantiate(bulletPrefab, firepoint.position, firepoint.rotation);
-        
     }
 
 }

@@ -30,7 +30,7 @@ public class Hitscan : MonoBehaviour
 
         if (hitReg)
         {
-            playerHealth health = hitReg.transform.GetComponent<playerHealth>();
+            Player_Health health = hitReg.transform.GetComponent<Player_Health>();
 
             if (health != null)
             {

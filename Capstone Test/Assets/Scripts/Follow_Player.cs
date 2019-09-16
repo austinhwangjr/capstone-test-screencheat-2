@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class followPlayer : MonoBehaviour
+public class Follow_Player : MonoBehaviour
 {
     public GameObject player;
 
@@ -15,6 +15,9 @@ public class followPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z - 1);
+        if (player != null)
+        {
+            transform.position = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z - 1);
+        }
     }
 }
