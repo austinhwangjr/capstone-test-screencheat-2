@@ -1177,9 +1177,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb2d_player_: {fileID: 0}
   rotation_speed_: 360
-  speed_: 0
   acceleration_: 2
-  decceleration_: -2
+  decceleration_: -1
   max_speed_: 5
   min_speed_: -5
 --- !u!212 &1080500637
@@ -2115,9 +2114,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb2d_player_: {fileID: 0}
   rotation_speed_: 360
-  speed_: 0
   acceleration_: 2
-  decceleration_: -2
+  decceleration_: 0
   max_speed_: 5
   min_speed_: -5
 --- !u!212 &1958749180
