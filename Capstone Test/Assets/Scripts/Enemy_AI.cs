@@ -42,7 +42,6 @@ public class Enemy_AI : MonoBehaviour
         {
             path_ = path;
             current_waypoint_ = 0;
-            print("completed");
         } 
     }
 
