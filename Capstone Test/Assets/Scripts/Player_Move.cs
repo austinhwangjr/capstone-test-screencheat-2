@@ -10,9 +10,9 @@ public class Player_Move : MonoBehaviour
 
     // movement variables
     public float rotation_speed_    = 360.0f;
-    public float speed_             = 0.0f;
-    public float acceleration_      = 2.0f;
-    public float decceleration_     = -2.0f;
+    private float speed_             = 0.0f;
+    public float acceleration_      = 4.0f;
+    public float decceleration_     = -0.5f;
     public float max_speed_         = 5.0f;  // i.e. max forward speed
     public float min_speed_         = -5.0f; // i.e. max backward speed
 
@@ -33,13 +33,13 @@ public class Player_Move : MonoBehaviour
         rotation_ = transform.rotation;
         if (name == "Player 1")
         {
-            horizontal_input_ = "Horizontal";
-            vertical_input_ = "Vertical";
+            horizontal_input_ = "Horizontal_2";
+            vertical_input_ = "Vertical_2";
         }
         else if (name == "Player 2")
         {
-            horizontal_input_ = "Horizontal_2";
-            vertical_input_ = "Vertical_2";
+            horizontal_input_ = "Horizontal";
+            vertical_input_ = "Vertical";
         }
     }
 
@@ -61,35 +61,47 @@ public class Player_Move : MonoBehaviour
     
     void UpdateObjectSpeed(float movement)
     {
-        // if backward
-        if (movement == -1)
-        {
-            if (speed_ > min_speed_)
-            {
-                speed_ += -acceleration_ * Time.deltaTime;
-            }
-        }
         // if forward
-        else if (movement == 1)
+        if (movement == 1)
         {
+            Decellerate();
             if (speed_ < max_speed_)
             {
                 speed_ += acceleration_ * Time.deltaTime;
             }
         }
+        // if backward
+        else if (movement == -1)
+        {
+            Decellerate();
+            if (speed_ > min_speed_)
+            {
+                speed_ += -acceleration_ * Time.deltaTime;
+            }
+        }
         // not moving
         else
         {
-            if (speed_ < -0.1f || speed_ > 0.1f)
-            {
-                speed_ += decceleration_ * Time.deltaTime;
-            } 
-            else if (speed_ != 0.0f)
-            {
-                speed_ = 0.0f;
-            }
+            Decellerate();
         }
     }
+
+    void Decellerate()
+    {
+        if (speed_ > 0.05f)
+        {
+            speed_ += decceleration_ * Time.deltaTime;
+        }
+        else if (speed_ < -0.05f)
+        {
+            speed_ -= decceleration_ * Time.deltaTime;
+        }
+        else if (speed_ != 0.0f)
+        {
+            speed_ = 0.0f;
+        }
+    }
+
     void UpdateHVTranslation()
     {
         //hv_velocity_.y = Input.GetAxisRaw(vertical_input_);
