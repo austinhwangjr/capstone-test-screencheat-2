@@ -9,15 +9,14 @@ public class Player_Move : MonoBehaviour
     private string      vertical_input_;
 
     // movement variables
-    public float rotation_speed_    = 360.0f;
+    public float rotation_speed_    = 10.0f;
     private float speed_             = 0.0f;
-    public float acceleration_      = 4.0f;
-    public float decceleration_     = -0.5f;
-    public float max_speed_         = 5.0f;  // i.e. max forward speed
-    public float min_speed_         = -5.0f; // i.e. max backward speed
+    public float acceleration_      = 30.0f;
+    public float decceleration_     = -10.0f;
+    public float max_speed_         = 7.0f;  // i.e. max forward speed
+    public float min_speed_         = -7.0f; // i.e. max backward speed
 
     // transformation variables
-    Quaternion  rotation_;
     Vector3     heading = new Vector3(0.0f, 1.0f, 0.0f);
     Vector3     hv_velocity_ = new Vector3(0.0f, 0.0f, 0.0f);
 
@@ -30,7 +29,6 @@ public class Player_Move : MonoBehaviour
     void InitPlayer()
     {
         rb2d_player_ = GetComponent<Rigidbody2D>();
-        rotation_ = transform.rotation;
         if (name == "Player 1")
         {
             horizontal_input_ = "Horizontal_2";
@@ -53,10 +51,8 @@ public class Player_Move : MonoBehaviour
 
     void UpdateRotation()
     {
-        float z = rotation_.eulerAngles.z;
-        z += Input.GetAxisRaw(horizontal_input_) * -rotation_speed_ * Time.deltaTime;
-        rotation_ = Quaternion.Euler(0, 0, z);
-        transform.rotation = rotation_;
+        float z = Input.GetAxisRaw(horizontal_input_) * -rotation_speed_;
+        transform.Rotate(0.0f, 0.0f, z);
     }
     
     void UpdateObjectSpeed(float movement)
@@ -67,7 +63,7 @@ public class Player_Move : MonoBehaviour
             Decellerate();
             if (speed_ < max_speed_)
             {
-                speed_ += acceleration_ * Time.deltaTime;
+                speed_ += acceleration_;
             }
         }
         // if backward
@@ -76,7 +72,7 @@ public class Player_Move : MonoBehaviour
             Decellerate();
             if (speed_ > min_speed_)
             {
-                speed_ += -acceleration_ * Time.deltaTime;
+                speed_ += -acceleration_;
             }
         }
         // not moving
@@ -90,11 +86,11 @@ public class Player_Move : MonoBehaviour
     {
         if (speed_ > 0.05f)
         {
-            speed_ += decceleration_ * Time.deltaTime;
+            speed_ += decceleration_;
         }
         else if (speed_ < -0.05f)
         {
-            speed_ -= decceleration_ * Time.deltaTime;
+            speed_ -= decceleration_;
         }
         else if (speed_ != 0.0f)
         {
@@ -104,13 +100,12 @@ public class Player_Move : MonoBehaviour
 
     void UpdateHVTranslation()
     {
-        //hv_velocity_.y = Input.GetAxisRaw(vertical_input_);
         UpdateObjectSpeed(Input.GetAxisRaw(vertical_input_));
-        hv_velocity_ = heading * speed_ * Time.deltaTime;
+        hv_velocity_ = heading * speed_;
     }
 
     void UpdateTransformation()
     {
-        transform.position += rotation_ * hv_velocity_;
+        rb2d_player_.AddForce(transform.rotation * hv_velocity_);
     }
 }
